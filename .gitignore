@@ -1,0 +1,58 @@
+# Node.js / npm
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-store/
+
+# Vite build output
+dist/
+dist-electron/
+.vite/
+
+# Electron Forge / Builder output
+out/
+release/
+forge.config.js.bak
+
+# Logs and temp files
+*.log
+*.log.*
+.DS_Store
+Thumbs.db
+
+# Editor / IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Environment / secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# TypeScript / build artifacts
+*.tsbuildinfo
+*.d.ts.map
+
+# Temporary files
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Optional: ignore large files (like blank-form.jpg if it's big)
+public/*.jpg
+public/*.png
+public/*.pdf
+!public/template.json  # keep this one if it's small and important
+
+# If you have sensitive data
+public/blank-form.jpg

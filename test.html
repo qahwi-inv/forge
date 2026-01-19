@@ -1,0 +1,128 @@
+<html>
+
+<head>
+<style>
+body {
+    color: gray; /* This should inherit to everything unless overridden */
+    font-family: 'Helvetica', sans-serif;
+}
+
+.parent {
+    color: purple; /* Children inherit this */
+    font-size: 20px;
+    border: 4px solid orange; /* Does NOT inherit */
+    margin: 20px;
+}
+
+.parent p {
+    color: green; /* Overrides inherited purple */
+    background-color: yellow; /* No inheritance needed—direct */
+}
+
+span {
+    color: red; /* Later rule—will it override? */
+}
+
+/* Low specificity: tag */
+p {
+    color: gray;
+}
+
+/* Medium: class */
+.text {
+    color: blue;
+}
+
+/* Higher: two classes */
+.highlight.special {
+    color: green;
+}
+
+/* Even higher: three classes */
+p.text.highlight.special {
+    color: orange;
+}
+
+/* Highest here: ID */
+#main-text {
+    color: red;
+}
+
+/* Try this last (should lose unless you move it lower) */
+p.special {
+    color: purple;
+}
+
+.container {
+    margin: 50px;
+    border: 3px solid black;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+.box {
+    width: 150px;
+    height: 100px;
+    margin: 20px;
+    padding: 20px;
+    background-color: tomato;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Now override display for each group */
+.block { display: block; }
+.inline { display: inline; }
+.inline-block { display: inline-block; }
+
+</style>
+
+
+
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<body>
+
+<div style="box-sizing:content-box;font-weight:bold;color:white;background-color:grey;
+text-align:center;padding:40px;">
+Hirrt
+</div>
+
+<p class="text highlight special" id="main-text" style="color:black">This is the test paragraph.</p>
+
+<div> my other div
+</div>
+
+<div class="parent">
+    <p>This text should inherit the parent's color and font.</p>
+    <span>But this span has its own styles.</span>
+</div>
+
+<div class="container">
+    <div class="box block">BLOCK 1</div>
+    <div class="box block">BLOCK 2</div>
+    
+    <span class="box inline">INLINE 1</span>
+    <span class="box inline">INLINE 2</span>
+    <span class="box inline">INLINE 3</span>
+    
+    <div class="box inline-block">INLINE-BLOCK 1</div>
+    <div class="box inline-block">INLINE-BLOCK 2</div>
+    <div class="box inline-block">INLINE-BLOCK 3</div>
+</div>
+
+<script>
+
+function generateKey(machineCode, secret) {
+  return CryptoJS.SHA256(machineCode + secret).toString(CryptoJS.enc.Hex).substring(0, 5).toUpperCase();
+}
+
+console.log(generateKey('D2961', 'i-love-girl-ass'));
+
+</script>
+
+</body>
+
+</html>
