@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Request Letter",
     "background": "/request_letter.jpg",
-    "template": "/template1.json",
+    "template": "/request_letter.json",
     "fields": [
       {"key": "companyName", "label": "company name", "type": "text", "placeholder": "companyName..."},
       {"key": "generalManagerName", "label": "General Manager Name", "type": "text", "placeholder": "General Manager Name..."}
@@ -25,11 +25,18 @@
     "id": 2,
     "name": "Manpower Request",
     "background": "/manpower_request.jpg",
-    "template": "/template2.json",
+    "template": "/manpower_request.json",
     "fields": [
-      {"key": "p1_1", "label": "اسم الموظف", "type": "text", "placeholder": "اكتب الاسم"},
-      {"key": "p1_2", "label": "رقم الموظف", "type": "text"},
-      {"key": "p1_3", "label": "الراتب الأساسي", "type": "number"}
+      {"key": "date", "label": "date", "type": "text", "placeholder": ""},
+      {"key": "ATTN", "label": "ATTN", "type": "text", "placeholder": ""},
+      {"key": "companyName", "label": "Company Name", "type": "text"},
+      {"key": "Visa_No", "label": "Visa No.", "type": "text"},
+      {"key": "Visa_Date", "label": "Visa Date", "type": "text"},
+      {"key": "Workers_No", "label": "Workers No.", "type": "text"},
+      {"key": "Site_Emp", "label": "Site of Employee", "type": "text"},
+      {"key": "Contract_Duration", "label": "Contract Duration", "type": "text"},
+      {"key": "Truely_Yours", "label": "Truely Yours", "type": "text"}
+
     ],
     "table": {
       "enabled": true,
@@ -43,6 +50,31 @@
       ],
       "defaultRows": 3,
       "rowFields": ["Actual Position", "Position", "Gender", "No. Of Workers", "Basic Monthly Salary in SAR"]
+    }
+  },
+  {
+    "id": 3,
+    "name": "Special Power of Attorney-1",
+    "background": "/spa_1.jpg",
+    "template": "/spa_1.json",
+    "fields": [
+      {"key": "name", "label": "name", "type": "text", "placeholder": "name"},
+      {"key": "nameAr", "label": "الاسم", "type": "text", "placeholder": "الاسم", "ar":true}
+    ],
+    "table": {
+      "enabled": false
+    }
+  },
+  {
+    "id": 4,
+    "name": "Special Power of Attorney-2",
+    "background": "/spa_2.jpg",
+    "template": "/spa_2.json",
+    "fields": [
+ 
+    ],
+    "table": {
+      "enabled": false
     }
   }
 ]

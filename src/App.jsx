@@ -201,7 +201,7 @@ useEffect(() => {
 
       if (import.meta.env.DEV) {
         // Vite dev → public/template.json
-        url = '/template1.json';
+        url = '/request_letter.json';
       } else {
         // Production → next to exe
         const templatePath = await window.electronAPI.getTemplatePath();
@@ -427,7 +427,8 @@ const currentForm = formsConfig.find(f => f.id === activeFormId);
         border: 'none', 
         borderRadius: '12px',
         position: 'absolute',
-        left: 0
+        left: 0,
+        visibility: 'hidden'
       }}
     >
       جديد
@@ -435,7 +436,7 @@ const currentForm = formsConfig.find(f => f.id === activeFormId);
 
     {/* Centered H1 */}
     <h1 style={{ textAlign: 'center', fontSize: '28px', width: '100%' }}>
-      محضر استلام
+     نماذج
     </h1>
 
   </div>
@@ -462,13 +463,25 @@ const currentForm = formsConfig.find(f => f.id === activeFormId);
     display: 'flex', 
     gap: '30px', 
     alignItems: 'flex-start',
+    justifyContent: 'center',
     flexWrap: 'wrap'  // Makes it responsive on resize
   }}>
     {/* Dropdown to select form */}
       <select
         value={activeFormId}
         onChange={(e) => setActiveFormId(parseInt(e.target.value))}
-        style={{ padding: '10px', fontSize: '18px', marginBottom: '20px' }}
+        style={{
+    width: '100%',
+    maxWidth: '400px',
+    padding: '12px 16px',
+    fontSize: '18px',
+    marginBottom: '30px',
+    border: '1px solid #ccc',
+    borderRadius: '8px',
+    background: '#f9f9f9',
+    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+    cursor: 'pointer'
+  }}
       >
         {formsConfig.map(form => (
           <option key={form.id} value={form.id}>
@@ -478,33 +491,60 @@ const currentForm = formsConfig.find(f => f.id === activeFormId);
       </select>
 
       {currentForm && (
-        <div>
-          <h2>{currentForm.name}</h2>
+  <div style={{ padding: '20px', background: '#fff', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}>
+    <h2 style={{ margin: '0 0 30px', fontSize: '28px', color: '#1a1a1a', textAlign: 'center' }}>
+      {currentForm.name}
+    </h2>
 
           {/* Dynamic inputs */}
-          {currentForm.fields.map(field => (
-            <div key={field.key} style={{ marginBottom: '15px' }}>
-              <label>{field.label}</label>
+          <div style={{ marginBottom: '40px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '25px' }}>
+      {currentForm.fields.map(field => (
+        <div key={field.key} style={{ display: 'flex', flexDirection: 'column', 
+        alignItems: field.ar? 'flex-end' : 'flex-start'  }}>
+              <label
+              style={{
+              marginBottom: '8px',
+              fontWeight: '600',
+              color: '#333',
+              fontSize: '16px',
+              direction: 'ltr'
+            }}>{field.label}</label>
               <input
+                dir= {field.ar ? "rtl" : "ltr"}
                 name={field.key}
                 type={field.type || 'text'}
                 placeholder={field.placeholder}
                 value={allFormData[activeFormId]?.[field.key] || ''}
                 onChange={handleChange}
-                style={{ width: '100%', padding: '10px' }}
+                style={{ 
+                  padding: '12px 16px',
+              fontSize: '16px',
+              border: '1px solid #ddd',
+              borderRadius: '8px',
+              outline: 'none',
+              transition: 'border-color 0.3s',
+              background: '#fafafa',
+              textAlign: field.ar ? 'right' : 'left',
+              width:'100%'
+                }}
+                onFocus={(e) => e.target.style.borderColor = '#4CAF50'}
+            onBlur={(e) => e.target.style.borderColor = '#ddd'}
               />
             </div>
           ))}
+          </div>
 
           {/* Optional Table */}
     {currentForm.table?.enabled && (
-      <div style={{ marginTop: '30px' }}>
-        <h3>جدول البيانات</h3>
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-          <thead>
-            <tr>
+      <div style={{ marginTop: '40px', marginBottom: '40px' }}>
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', background: '#fff', borderRadius: '8px', overflow: 'hidden' }}>
+            <thead>
+            <tr style={{ background: '#f1f1f1' }}> 
               {currentForm.table.columns.map(col => (
-                <th key={col.key} style={{ border: '1px solid #ccc', padding: '10px' }}>
+                <th key={col.key} style={{ 
+                  border: '1px solid #ccc', padding: '10px', textAlign: 'center', 
+                  }}>
                   {col.label}
                 </th>
               ))}
@@ -522,7 +562,7 @@ const currentForm = formsConfig.find(f => f.id === activeFormId);
                         newRows[rowIndex][key] = e.target.value;
                         setTableData(prev => ({ ...prev, [activeFormId]: newRows }));
                       }}
-                      style={{ width: '100%', border: 'none', padding: '8px' }}
+                      style={{ width: '100%', border: 'none', padding: '8px', textAlign: 'center' }}
                     />
                   </td>
                 ))}
@@ -530,18 +570,8 @@ const currentForm = formsConfig.find(f => f.id === activeFormId);
             ))}
           </tbody>
         </table>
+</div>
 
-        {/* Add row button */}
-        <button onClick={() => {
-          const newRow = {};
-          currentForm.table.rowFields.forEach(key => newRow[key] = '');
-          setTableData(prev => ({
-            ...prev,
-            [activeFormId]: [...prev[activeFormId], newRow]
-          }));
-        }}>
-          إضافة صف
-        </button>
       </div>
     )}
 
@@ -563,12 +593,17 @@ const currentForm = formsConfig.find(f => f.id === activeFormId);
             {currentForm.fields.map(field => (
               <div key={field.key} style={{
                 position: 'absolute',
-                left: `${positions.normalFields[field.key]?.left || 0}mm`,
+                ...(field.ar
+                ? { right: `${positions.normalFields[field.key]?.left || 0}mm` }
+                : { left: `${positions.normalFields[field.key]?.left || 0}mm` }),
                 top: `${positions.normalFields[field.key]?.top || 0}mm`,
                 fontWeight: 'bold',
                 fontSize: '14px', // adjust as needed
                 whiteSpace: 'nowrap', // prevents text wrapping in weird places
-                color: '#000' // ensure visibility
+                color: '#000', // ensure visibility
+                
+                  // conditional left/right
+                
               }}>
                 {allFormData[activeFormId]?.[field.key] || ''}
               </div>
@@ -605,8 +640,35 @@ const currentForm = formsConfig.find(f => f.id === activeFormId);
           </div>
 
       
-
-        <button onClick={handlePrint}>طباعة</button>
+           <div>
+  <button 
+    onClick={handlePrint}
+    style={{
+      padding: '14px 40px',
+      fontSize: '18px',
+      fontWeight: '600',
+      backgroundColor: '#10b981', // emerald green
+      color: 'white',
+      border: 'none',
+      borderRadius: '10px',
+      cursor: 'pointer',
+      boxShadow: '0 4px 12px rgba(16,185,129,0.3)',
+      transition: 'all 0.2s ease',
+      margin: '20px auto',
+      display: 'block'
+    }}
+    onMouseEnter={(e) => {
+      e.target.style.transform = 'translateY(-2px)';
+      e.target.style.boxShadow = '0 6px 20px rgba(16,185,129,0.4)';
+    }}
+    onMouseLeave={(e) => {
+      e.target.style.transform = 'translateY(0)';
+      e.target.style.boxShadow = '0 4px 12px rgba(16,185,129,0.3)';
+    }}
+  >
+    طباعة
+  </button>
+</div>
       </div>
     )}
 {/* Tabs for navigation */}
