@@ -8,4 +8,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
     getMachineId: () => ipcRenderer.invoke('get-machine-id'),
     saveLicense: (key) => ipcRenderer.invoke('save-license', key),
     getLicense: () => ipcRenderer.invoke('get-license'),
+      readJson: (fileName) => ipcRenderer.invoke("read-json", fileName),
+  getAssetPath: (fileName) => ipcRenderer.invoke("get-asset-path", fileName),
+
 });

@@ -1,0 +1,1 @@
+"use strict";const e=require("electron");e.contextBridge.exposeInMainWorld("electronAPI",{getTemplatePath:()=>e.ipcRenderer.invoke("get-template-path"),printPortrait:i=>e.ipcRenderer.invoke("print-portrait",i),getMachineId:()=>e.ipcRenderer.invoke("get-machine-id"),saveLicense:i=>e.ipcRenderer.invoke("save-license",i),getLicense:()=>e.ipcRenderer.invoke("get-license")});

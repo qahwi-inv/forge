@@ -1,0 +1,45 @@
+{
+  "normalFields": {
+    "date": { "left": 40, "top": 31 },
+    "ATTN": { "left": 40, "top": 75 },
+    "companyName": { "left": 35, "top": 104 },
+    "Visa_No": { "left": 65, "top": 115 },
+    "Visa_Date": { "left": 108, "top": 115 },
+    "Workers_No": { "left": 148, "top": 145 },
+    "Site_Emp": { "left": 80, "top": 164 },
+    "Contract_Duration": { "left": 76, "top": 169 },
+    "Truely_Yours": { "left": 30, "top": 260 }
+
+  },
+  "table": {
+    "startLeft": 25,          
+    "startTop": 130,          
+    "columnWidths": [60, 40, 50, 40, 50], 
+    "rowHeight": 20,          
+    "cells": [
+     
+      [
+        { "left": 0, "top": 0 },  
+        { "left": 45, "top": 0 },
+        { "left": 96, "top": 0 }, 
+        { "left": 123, "top": 0 },
+        { "left": 140, "top": 0 }
+      ],
+      [
+        { "left": 0, "top": 5 },  
+        { "left": 45, "top": 5 },
+        { "left": 96, "top": 5 }, 
+        { "left": 123, "top": 5 },
+        { "left": 140, "top": 5 }
+      ],
+      [
+        { "left": 0, "top": 10 },  
+        { "left": 45, "top": 10 },
+        { "left": 96, "top": 10 }, 
+        { "left": 123, "top": 10 },
+        { "left": 140, "top": 10 }
+      ]
+      
+    ]
+  }
+}

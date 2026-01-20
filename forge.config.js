@@ -4,9 +4,11 @@ const { FuseV1Options, FuseVersion } = require('@electron/fuses');
 module.exports = {
   packagerConfig: {
     asar: true,
-    extraResource: [
-      './public/template.json',
-      './public/blank-form.jpg',
+    extraResources: [
+      {
+        from: './public',
+        to: 'assets'
+      }
     ],
   },
   rebuildConfig: {},

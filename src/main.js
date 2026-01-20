@@ -4,6 +4,7 @@ import started from 'electron-squirrel-startup';
 import * as fs from 'fs';
 import { machineIdSync } from 'node-machine-id';
 
+const isDev = process.env.NODE_ENV === "development";
 
 ipcMain.handle('get-machine-id', () => {
   return machineIdSync(); // Unique hardware hash
@@ -107,9 +108,42 @@ app.on('window-all-closed', () => {
   }
 });
 
+const getAssetsPath = () => {
+  return app.isPackaged
+    ? path.join(process.resourcesPath, 'assets')
+    : path.join(app.getAppPath(), 'public', 'assets');
+};
+
+ipcMain.handle("read-json", (event, fileName) => {
+  const fullPath = isDev
+    ? path.join(app.getAppPath(), "public", fileName)
+    : path.join(process.resourcesPath, "assets", fileName);
+
+  const data = fs.readFileSync(fullPath, "utf8");
+  return JSON.parse(data);
+});
+
+ipcMain.handle("get-asset-path", (event, relativePath) => {
+  // dev -> use project public folder
+  if (isDev) {
+    return path.join(app.getAppPath(), "public", relativePath);
+  }
+
+  // prod -> resources/assets folder
+  return path.join(process.resourcesPath, "assets", relativePath);
+});
+
 ipcMain.handle('print-portrait', async (event, { content, url }) => {
-  const printWin = new BrowserWindow({ show: false });
-  const imageSrc = new URL(url, MAIN_WINDOW_VITE_DEV_SERVER_URL).toString();
+  const printWin = new BrowserWindow({ show: false,  webPreferences: {
+    webSecurity: false
+  } });
+
+ const assetsPath = getAssetsPath();
+
+  // image = "/request_letter.jpg"
+  const imagePath = path.join(assetsPath, url.replace(/^\/+/, ''));
+  const imageSrc = `file://${imagePath.replace(/\\/g, '/')}`;
+
 
   const fullHtml = `
 <!DOCTYPE html>
@@ -132,10 +166,9 @@ ipcMain.handle('print-portrait', async (event, { content, url }) => {
 </head>
 <body>
   <div class="print-area">
-    <img src='${imageSrc}' style="width:100%;height:auto" />
+      ${content}
 
-    ${content}
-  </div>
+</div>
 </body>
 </html>
   `;
@@ -144,9 +177,8 @@ ipcMain.handle('print-portrait', async (event, { content, url }) => {
 
   printWin.webContents.on('did-finish-load', () => {
     printWin.webContents.print({
-      silent: false,
+      silent: true,           // No dialog — prints directly to default printer
       printBackground: true,
-      landscape: false,
       margins: { marginType: 'none' },
       pageSize: 'A4',
     }, () => {
@@ -154,5 +186,3 @@ ipcMain.handle('print-portrait', async (event, { content, url }) => {
     });
   });
 });
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.

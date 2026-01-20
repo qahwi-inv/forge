@@ -22,6 +22,7 @@ const [formData, setFormData] = useState({});
   const [activationCode, setActivationCode] = useState('');
   const [machineCode, setMachineCode] = useState('');
   const [isActivated, setIsActivated] = useState(false);
+const [assetsPath, setAssetsPath] = useState("");
 
 
 const [tableData, setTableData] = useState({}); // { formId: [{item: '', amount: ''}, ...] }
@@ -50,6 +51,7 @@ useEffect(() => {
     }
   }
 }, [activeFormId, formsConfig]);
+
 const getBase64FromUrl = async (url) => {
   const response = await fetch(url);
   const blob = await response.blob();
@@ -60,32 +62,36 @@ const getBase64FromUrl = async (url) => {
     reader.readAsDataURL(blob);
   });
 };
+const buildFileUrl = (assetsPath, fileName) => {
+  const fullPath = `${assetsPath}/${fileName}`;
+  return `file://${fullPath.replace(/\\/g, "/")}`;
+};
+
+//const imageUrl = buildFileUrl(assetsPath, "request_letter.jpg");
 
 useEffect(() => {
-    fetch('/forms-config.json')
-      .then(r => r.json())
-      .then(data => {
-        setFormsConfig(data);
-        // Initialize empty formData for each form
-        const initialData = {};
-        data.forEach(form => {
-          initialData[form.id] = {};
-        });
-        setAllFormData(initialData);
-      });
-  }, []);
+  const loadConfig = async () => {
+    const data = await window.electronAPI.readJson("forms-config.json");
+    setFormsConfig(data);
 
+    const initialData = {};
+    data.forEach((form) => (initialData[form.id] = {}));
+    setAllFormData(initialData);
+  };
+
+  loadConfig();
+}, []);
   // Load positions when form changes
-  useEffect(() => {
-    if (activeFormId) {
-      const form = formsConfig.find(f => f.id === activeFormId);
-      if (form) {
-        fetch(form.template)
-          .then(r => r.json())
-          .then(data => setPositions(data));
-      }
+useEffect(() => {
+  if (activeFormId) {
+    const form = formsConfig.find((f) => f.id === activeFormId);
+    if (form) {
+      window.electronAPI
+        .readJson(form.template.replace(/^\//, ""))
+        .then((data) => setPositions(data));
     }
-  }, [activeFormId, formsConfig]);
+  }
+}, [activeFormId, formsConfig]);
 
   // Updated handleChange: works for any active form
   const handleChange = (e) => {
@@ -99,9 +105,14 @@ useEffect(() => {
       },
     }));
   };
+
+
+
 const handlePrint = async () => {
+
   const content = printRef.current.innerHTML;
   const url = currentForm.background // your helper
+
 
   window.electronAPI.printPortrait({ content, url });
 };
@@ -127,12 +138,6 @@ const handleSavePDF = () => {
 const UseArabicNumber = (number) => {
   return toArabicWord(number);
 };
-
-
-
-
-
-
 
   // Function to get formatted Hijri date (Arabic numerals and names)
 function getHijriDate(date = new Date()) {
@@ -177,6 +182,13 @@ const grantAfter = (grandTotalBeforeTax * 0.15 + grandTotalBeforeTax).toFixed(2)
   const [previewMode, setPreviewMode] = useState(true);
 
 
+useEffect(() => {
+  (async () => {
+    const path = await window.electronAPI.getAssetPath("");
+    setAssetsPath(path);
+  })();
+}, []);
+
 
   // Handle change for current form
 
@@ -196,31 +208,13 @@ const grantAfter = (grandTotalBeforeTax * 0.15 + grandTotalBeforeTax).toFixed(2)
 
 useEffect(() => {
   const loadTemplate = async () => {
-    try {
-      let url;
-
-      if (import.meta.env.DEV) {
-        // Vite dev → public/template.json
-        url = '/request_letter.json';
-      } else {
-        // Production → next to exe
-        const templatePath = await window.electronAPI.getTemplatePath();
-        url = `file://${templatePath}`;
-      }
-
-      const response = await fetch(url);
-      if (!response.ok) throw new Error('Template not found');
-
-      const data = await response.json();
-      setPositions(data);
-      console.log('Loaded template:', data);
-    } catch (err) {
-      console.error('Failed to load template:', err);
-    }
+    const data = await window.electronAPI.readJson("request_letter.json");
+    setPositions(data);
   };
 
   loadTemplate();
 }, []);
+
 useEffect(() => {
     const checkActivation = async () => {
       const license = await window.electronAPI.getLicense();
@@ -407,9 +401,15 @@ useEffect(() => {
     );
   }
 
-console.log(tableData);
-const currentForm = formsConfig.find(f => f.id === activeFormId);
+  const currentForm = formsConfig.find(f => f.id === activeFormId);
 
+const previewImage = currentForm
+  ? (import.meta.env.DEV
+      ? `${currentForm.background}`
+      : `assets${currentForm.background}`
+    )
+  : '';
+    
   return (
     <div style={{ padding: '30px', fontFamily: 'Arial', direction: 'ltr', fontSize: '16px', background: '#f8f9fa' }}>
       <div style={{ padding: '30px', fontFamily: 'Arial', direction: 'ltr', fontSize: '16px', background: '#f8f9fa' }}>
@@ -580,7 +580,7 @@ const currentForm = formsConfig.find(f => f.id === activeFormId);
             width: '210mm',
             height: '297mm',
             position: 'relative',
-            backgroundImage: `url(${currentForm.background})`,
+            backgroundImage: `url(${previewImage})`,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             backgroundSize: 'contain',
