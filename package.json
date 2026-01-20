@@ -39,6 +39,8 @@
     "node-machine-id": "^1.1.12",
     "number-to-arabic-words": "^1.5.3",
     "react": "^19.2.3",
-    "react-dom": "^19.2.3"
+    "react-dom": "^19.2.3",
+    "react-pdf": "^10.3.0",
+    "react-tabs": "^6.1.0"
   }
 }

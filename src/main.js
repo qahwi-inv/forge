@@ -4,6 +4,7 @@ import started from 'electron-squirrel-startup';
 import * as fs from 'fs';
 import { machineIdSync } from 'node-machine-id';
 
+
 ipcMain.handle('get-machine-id', () => {
   return machineIdSync(); // Unique hardware hash
 });
@@ -106,8 +107,9 @@ app.on('window-all-closed', () => {
   }
 });
 
-ipcMain.handle('print-silent-landscape', async (event, htmlContent) => {
+ipcMain.handle('print-portrait', async (event, { content, url }) => {
   const printWin = new BrowserWindow({ show: false });
+  const imageSrc = new URL(url, MAIN_WINDOW_VITE_DEV_SERVER_URL).toString();
 
   const fullHtml = `
 <!DOCTYPE html>
@@ -115,12 +117,25 @@ ipcMain.handle('print-silent-landscape', async (event, htmlContent) => {
 <head>
   <meta charset="utf-8">
   <style>
-    @page { size: A4 landscape; margin: 0; }
-    html, body { margin: 0; padding: 0; width: 297mm; height: 210mm; overflow: hidden; }
+    @page { size: A4 portrait; margin: 0; }
+    html, body { margin: 0; padding: 0; width: 210mm; height: 297mm; overflow: hidden; }
+    .print-area { 
+      width: 210mm;
+      height: 297mm;
+      position: relative;
+      background-image: url('${imageSrc}');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
   </style>
 </head>
 <body>
-  ${htmlContent}
+  <div class="print-area">
+    <img src='${imageSrc}' style="width:100%;height:auto" />
+
+    ${content}
+  </div>
 </body>
 </html>
   `;
@@ -129,76 +144,15 @@ ipcMain.handle('print-silent-landscape', async (event, htmlContent) => {
 
   printWin.webContents.on('did-finish-load', () => {
     printWin.webContents.print({
-      silent: true,           // No dialog — prints directly to default printer
+      silent: false,
       printBackground: true,
-      landscape: true,        // Forces landscape
+      landscape: false,
       margins: { marginType: 'none' },
       pageSize: 'A4',
     }, () => {
       printWin.close();
     });
   });
-});
-
-ipcMain.handle('print-and-save-pdf', async (event, htmlContent) => {
-  const printWin = new BrowserWindow({ show: false });
-
-  const fullHtml = `
-<!DOCTYPE html>
-<html dir="rtl">
-<head>
-  <meta charset="utf-8">
-  <style>
-    @page { size: A4 landscape; margin: 0; }
-    html, body { margin: 0; padding: 0; width: 297mm; height: 210mm; overflow: hidden; }
-  </style>
-</head>
-<body>
-  ${htmlContent}
-</body>
-</html>
-  `;
-
-  printWin.loadURL('data:text/html;charset=utf-8,' + encodeURIComponent(fullHtml));
-
-  printWin.webContents.on('did-finish-load', async () => {
-  // Add delay to ensure content is fully rendered
-  setTimeout(async () => {
-    try {
-      // Generate PDF data
-      const pdfData = await printWin.webContents.printToPDF({
-        printBackground: true,
-        landscape: true,
-        pageSize: 'A4',
-        marginsType: 0,
-      });
-
-      // Auto-save to Documents
-      const now = new Date();
-      const date = now.toISOString().slice(0, 10);
-      const time = now.toTimeString().slice(0, 8).replace(/:/g, '-');
-
-      const fileName = `محضر-استلام-${date}_${time}.pdf`;
-      const savePath = path.join(app.getPath('documents'), fileName);
-
-      fs.writeFileSync(savePath, pdfData);
-
-      // Then print to printer
-      printWin.webContents.print({
-        silent: false,
-        printBackground: true,
-        landscape: true,
-        margins: { marginType: 'none' },
-        pageSize: 'A4',
-      }, () => {
-        printWin.close();
-      });
-    } catch (err) {
-      console.error('PDF generation failed:', err);
-      printWin.close();
-    }
-  }, 1000); // 1000ms = 1 second delay (adjust if needed: 500–2000)
-});
 });
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.

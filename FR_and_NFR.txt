@@ -1,0 +1,6 @@
+Functional requirement:
+- saving/loading previous client data to change them
+- adding 7 forms
+- add english/arabic
+- multiple pages in one tab issue, how?
+- create table

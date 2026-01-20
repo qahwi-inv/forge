@@ -1,0 +1,48 @@
+[
+  {
+    "id": 1,
+    "name": "Request Letter",
+    "background": "/request_letter.jpg",
+    "template": "/template1.json",
+    "fields": [
+      {"key": "companyName", "label": "company name", "type": "text", "placeholder": "companyName..."},
+      {"key": "generalManagerName", "label": "General Manager Name", "type": "text", "placeholder": "General Manager Name..."}
+
+    ],
+    "table": {
+      "enabled": true,
+      "columns": [
+        {"key": "Name", "label": "Name"},
+        {"key": "Iqama No.", "label": "Iqama No."},
+        {"key": "Passport No.", "label": "Passport No."},
+        {"key": "Mobile No.", "label": "Mobile No."}
+      ],
+      "defaultRows": 5,
+      "rowFields": ["Name", "Iqama No.", "Passport No.", "Mobile No."]
+    }
+  },
+  {
+    "id": 2,
+    "name": "Manpower Request",
+    "background": "/manpower_request.jpg",
+    "template": "/template2.json",
+    "fields": [
+      {"key": "p1_1", "label": "اسم الموظف", "type": "text", "placeholder": "اكتب الاسم"},
+      {"key": "p1_2", "label": "رقم الموظف", "type": "text"},
+      {"key": "p1_3", "label": "الراتب الأساسي", "type": "number"}
+    ],
+    "table": {
+      "enabled": true,
+      "columns": [
+        {"key": "Actual Position", "label": "Actual Position"},
+        {"key": "Position", "label": "Position"},
+        {"key": "Gender", "label": "Gender"},
+        {"key": "No. Of Workers", "label": "No. Of Workers"},
+        {"key": "Basic Monthly Salary in SAR", "label": "Basic Monthly Salary in SAR"}
+
+      ],
+      "defaultRows": 3,
+      "rowFields": ["Actual Position", "Position", "Gender", "No. Of Workers", "Basic Monthly Salary in SAR"]
+    }
+  }
+]

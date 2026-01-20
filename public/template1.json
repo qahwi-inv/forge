@@ -1,0 +1,48 @@
+{
+  "normalFields": {
+    "companyName": { "left": 48, "top": 115 },
+    "generalManagerName": { "left": 27, "top": 245 }
+
+
+  },
+  "table": {
+    "startLeft": 27,          
+    "startTop": 181,          
+    "columnWidths": [60, 40, 50, 40], 
+    "rowHeight": 20,          
+    "cells": [
+     
+      [
+        { "left": 0, "top": 0 },  
+        { "left": 53, "top": 0 },
+        { "left": 85, "top": 0 }, 
+        { "left": 118, "top": 0 }
+      ],
+      [
+        { "left": 0, "top": 9 },  
+        { "left": 53, "top": 9 },
+        { "left": 85, "top": 9 }, 
+        { "left": 118, "top": 9 }
+      ],
+      [
+        { "left": 0, "top": 18 },  
+        { "left": 53, "top": 18 },
+        { "left": 85, "top": 18 }, 
+        { "left": 118, "top": 18 }
+      ],
+      [
+        { "left": 0, "top": 27 },  
+        { "left": 53, "top": 27 },
+        { "left": 85, "top": 27 }, 
+        { "left": 118, "top": 27 }
+      ],
+      [
+        { "left": 0, "top": 36 },  
+        { "left": 53, "top": 36 },
+        { "left": 85, "top": 36 }, 
+        { "left": 118, "top": 36 }
+      ]
+      
+    ]
+  }
+}
