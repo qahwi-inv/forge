@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": 3,
     "name": "Request Letter",
     "background": "/request_letter.jpg",
     "template": "/request_letter.json",
@@ -53,13 +53,34 @@
     }
   },
   {
-    "id": 3,
+    "id": 1,
     "name": "Special Power of Attorney-1",
     "background": "/spa_1.jpg",
     "template": "/spa_1.json",
     "fields": [
-      {"key": "name", "label": "name", "type": "text", "placeholder": "name"},
-      {"key": "nameAr", "label": "الاسم", "type": "text", "placeholder": "الاسم", "ar":true}
+      {"key": "name", "label": "name", "type": "text", "placeholder": ""},
+      {"key": "POB", "label": "P.O Box", "type": "text", "placeholder": ""},
+      {"key": "Zip_code", "label": "Zip Code", "type": "text", "placeholder": ""},
+      {"key": "dist", "label": "District", "type": "text", "placeholder": ""},
+      {"key": "city", "label": "City", "type": "text", "placeholder": ""},
+      {"key": "capac", "label": "Capacity as", "type": "text", "placeholder": ""},
+      {"key": "const", "label": "To Constitute", "type": "text", "placeholder": ""},
+      {"key": "rep_by", "label": "Represented By", "type": "text", "placeholder": ""},
+      {"key": "G_M", "label": "General Manager of", "type": "text", "placeholder": ""},
+      {"key": "address", "label": "Office Address at", "type": "text", "placeholder": ""},
+
+
+      {"key": "addressar", "label": "العنوان", "type": "text", "placeholder": "", "ar":true},
+      {"key": "nameAr", "label": "الاسم", "type": "text", "placeholder": "", "ar":true},
+      {"key": "sifa", "label": "صفتي", "type": "text", "placeholder": "", "ar":true},
+      {"key": "lesharika", "label": "لشركة", "type": "text", "placeholder": "", "ar":true},
+      {"key": "auaen", "label": "اعين مكتب", "type": "text", "placeholder": "", "ar":true},
+      {"key": "said", "label": "يمثله السيد", "type": "text", "placeholder": "", "ar":true},
+      {"key": "sifa2", "label": "بصفته", "type": "text", "placeholder": "", "ar":true},
+      {"key": "maktab", "label": "عنوان المكتب", "type": "text", "placeholder": "", "ar":true}
+
+
+
     ],
     "table": {
       "enabled": false
