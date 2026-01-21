@@ -1,0 +1,21 @@
+{
+  "normalFields": {
+    "sig": { "left": 44, "top": 82 },
+    "pass": { "left": 56, "top": 86 },
+    "Issued": { "left": 45, "top": 90 },
+    "Endore": { "left": 76, "top": 94 },
+    "wit1": { "left": 29, "top": 110 },
+    "wit2": { "left": 77, "top": 110 },
+    "siga": { "left": 48, "top": 64 },
+    "passa": { "left": 57, "top": 69.5 },
+    "IssuedA": { "left": 50, "top": 74 },
+    "Endorea": { "left": 58, "top": 79 },
+
+
+    "wit1a": { "left": 27, "top": 94 },
+    "wit2a": { "left": 65, "top": 94 }
+
+  },
+  "table": {}
+
+}
