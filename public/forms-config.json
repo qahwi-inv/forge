@@ -1,6 +1,6 @@
 [
   {
-    "id": 5,
+    "id": 7,
     "name": "Request Letter",
     "background": "/request_letter.jpg",
     "template": "/request_letter.json",
@@ -111,7 +111,7 @@
     }
   },
     {
-    "id": 1,
+    "id": 5,
     "name": "Standard Employement Contract-1",
     "background": "/sec_1.jpg",
     "template": "/sec_1.json",
@@ -159,43 +159,26 @@
     "background": "/sec_2.jpg",
     "template": "/sec_2.json",
     "fields": [
-      {"key": "sig", "label": "Signature", "type": "text", "placeholder": ""},
-      {"key": "pass", "label": "Passport/I.D. No", "type": "text", "placeholder": ""},
-      {"key": "Issued", "label": "Issued on", "type": "text", "placeholder": ""},
-      {"key": "Endore", "label": "Endoresement and Authorization", "type": "text", "placeholder": ""},
-      {"key": "wit1", "label": "Witness 1", "type": "text", "placeholder": ""},
-      {"key": "wit2", "label": "Witness 2", "type": "text", "placeholder": ""},
- 
-      {"key": "siga", "label": "توقيع الموكل", "type": "text", "placeholder": "", "ar":true},
-      {"key": "passa", "label": "رقم الجواز / البطاقة", "type": "text", "placeholder": "", "ar":true},
-      {"key": "IssuedA", "label": "تاريخ الاصدار", "type": "text", "placeholder": "", "ar":true},
-      {"key": "Endorea", "label": "موثق من قبل", "type": "text", "placeholder": "", "ar":true},
-      {"key": "wit1a", "label": "شاهد اول", "type": "text", "placeholder": "", "ar":true},
-      {"key": "wit2a", "label": "شاهد ثاني", "type": "text", "placeholder": "", "ar":true}
+      {"key": "bada", "label": "بدل اعاشة", "type": "text", "placeholder": "", "ar":true}
     ],
     "table": {
       "enabled": false
     }
   },
   {
-    "id": 7,
+    "id": 1,
     "name": "Standard Employement Contract-3",
-    "background": "/sec_3.jpg",
-    "template": "/sec_3.json",
+    "background": "/sec_4.jpg",
+    "template": "/sec_4.json",
     "fields": [
-      {"key": "sig", "label": "Signature", "type": "text", "placeholder": ""},
-      {"key": "pass", "label": "Passport/I.D. No", "type": "text", "placeholder": ""},
-      {"key": "Issued", "label": "Issued on", "type": "text", "placeholder": ""},
-      {"key": "Endore", "label": "Endoresement and Authorization", "type": "text", "placeholder": ""},
-      {"key": "wit1", "label": "Witness 1", "type": "text", "placeholder": ""},
-      {"key": "wit2", "label": "Witness 2", "type": "text", "placeholder": ""},
- 
-      {"key": "siga", "label": "توقيع الموكل", "type": "text", "placeholder": "", "ar":true},
-      {"key": "passa", "label": "رقم الجواز / البطاقة", "type": "text", "placeholder": "", "ar":true},
-      {"key": "IssuedA", "label": "تاريخ الاصدار", "type": "text", "placeholder": "", "ar":true},
-      {"key": "Endorea", "label": "موثق من قبل", "type": "text", "placeholder": "", "ar":true},
-      {"key": "wit1a", "label": "شاهد اول", "type": "text", "placeholder": "", "ar":true},
-      {"key": "wit2a", "label": "شاهد ثاني", "type": "text", "placeholder": "", "ar":true}
+      {"key": "day", "label": "Day", "type": "text", "placeholder": ""},
+      {"key": "month", "label": "Month", "type": "text", "placeholder": ""},
+      {"key": "at", "label": "At", "type": "text", "placeholder": ""},
+      
+      {"key": "daya", "label": "يوم", "type": "text", "placeholder": "", "ar":true},
+      {"key": "montha", "label": "شهر", "type": "text", "placeholder": "", "ar":true},
+      {"key": "yeara", "label": "عام", "type": "text", "placeholder": "", "ar":true},
+      {"key": "fe", "label": "في", "type": "text", "placeholder": "", "ar":true}
     ],
     "table": {
       "enabled": false
