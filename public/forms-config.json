@@ -1,6 +1,6 @@
 [
   {
-    "id": 3,
+    "id": 4,
     "name": "Request Letter",
     "background": "/request_letter.jpg",
     "template": "/request_letter.json",
@@ -53,7 +53,7 @@
     }
   },
   {
-    "id": 1,
+    "id": 3,
     "name": "Special Power of Attorney-1",
     "background": "/spa_1.jpg",
     "template": "/spa_1.json",
@@ -87,12 +87,24 @@
     }
   },
   {
-    "id": 4,
+    "id": 1,
     "name": "Special Power of Attorney-2",
     "background": "/spa_2.jpg",
     "template": "/spa_2.json",
     "fields": [
+      {"key": "sig", "label": "Signature", "type": "text", "placeholder": ""},
+      {"key": "pass", "label": "Passport/I.D. No", "type": "text", "placeholder": ""},
+      {"key": "Issued", "label": "Issued on", "type": "text", "placeholder": ""},
+      {"key": "Endore", "label": "Endoresement and Authorization", "type": "text", "placeholder": ""},
+      {"key": "wit1", "label": "Witness 1", "type": "text", "placeholder": ""},
+      {"key": "wit2", "label": "Witness 2", "type": "text", "placeholder": ""},
  
+      {"key": "siga", "label": "توقيع الموكل", "type": "text", "placeholder": "", "ar":true},
+      {"key": "passa", "label": "رقم الجواز / البطاقة", "type": "text", "placeholder": "", "ar":true},
+      {"key": "IssuedA", "label": "تاريخ الاصدار", "type": "text", "placeholder": "", "ar":true},
+      {"key": "Endorea", "label": "موثق من قبل", "type": "text", "placeholder": "", "ar":true},
+      {"key": "wit1a", "label": "شاهد اول", "type": "text", "placeholder": "", "ar":true},
+      {"key": "wit2a", "label": "شاهد ثاني", "type": "text", "placeholder": "", "ar":true}
     ],
     "table": {
       "enabled": false
