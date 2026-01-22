@@ -3,7 +3,6 @@ import { toArabicWord } from 'number-to-arabic-words/dist/index-node.js'
 import CryptoJS from 'crypto-js';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css'; // Basic style (optional)
-import requestLetter from '/request_letter.jpg';
 
 const SECRET = 'i-love-girl-ass';
 
