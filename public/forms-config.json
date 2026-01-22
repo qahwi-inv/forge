@@ -1,6 +1,6 @@
 [
   {
-    "id": 7,
+    "id": 8,
     "name": "Request Letter",
     "background": "/request_letter.jpg",
     "template": "/request_letter.json",
@@ -166,10 +166,69 @@
     }
   },
   {
-    "id": 1,
+    "id": 7,
     "name": "Standard Employement Contract-3",
     "background": "/sec_4.jpg",
     "template": "/sec_4.json",
+    "fields": [
+      {"key": "day", "label": "Day", "type": "text", "placeholder": ""},
+      {"key": "month", "label": "Month", "type": "text", "placeholder": ""},
+      {"key": "at", "label": "At", "type": "text", "placeholder": ""},
+      
+      {"key": "daya", "label": "يوم", "type": "text", "placeholder": "", "ar":true},
+      {"key": "montha", "label": "شهر", "type": "text", "placeholder": "", "ar":true},
+      {"key": "yeara", "label": "عام", "type": "text", "placeholder": "", "ar":true},
+      {"key": "fe", "label": "في", "type": "text", "placeholder": "", "ar":true}
+    ],
+    "table": {
+      "enabled": false
+    }
+  },
+    {
+    "id": 1,
+    "name": "Recruitment Agreement-1",
+    "background": "/rap_1.jpg",
+    "template": "/rap_1.json",
+    "fields": [
+      {"key": "comp_name", "label": "Company Name", "type": "text", "placeholder": ""},
+      {"key": "rec_agency", "label": "Recruitment Agency", "type": "text", "placeholder": ""},
+      {"key": "comp_name2", "label": "Between Company Name", "type": "text", "placeholder": ""},
+      {"key": "offic_addres", "label": "Office Address", "type": "text", "placeholder": ""},
+      {"key": "emp_name", "label": "Employer Name", "type": "text", "placeholder": ""},
+      {"key": "rec_agnecy2", "label": "Again Recruitment Agency", "type": "text", "placeholder": ""},
+      {"key": "pra_rep", "label": "PRA Representitive", "type": "text", "placeholder": ""},
+      {"key": "the_company_name", "label": "The Company Name", "type": "text", "placeholder": ""},
+      {"key": "serv_agency", "label": "Services of Recruitment Agency", "type": "text", "placeholder": ""}
+
+    ],
+    "table": {
+      "enabled": false
+    }
+  },
+    {
+    "id": 9,
+    "name": "Recruitment Agreement-2",
+    "background": "/rap_2.jpg",
+    "template": "/rap_2.json",
+    "fields": [
+      {"key": "day", "label": "Day", "type": "text", "placeholder": ""},
+      {"key": "month", "label": "Month", "type": "text", "placeholder": ""},
+      {"key": "at", "label": "At", "type": "text", "placeholder": ""},
+      
+      {"key": "daya", "label": "يوم", "type": "text", "placeholder": "", "ar":true},
+      {"key": "montha", "label": "شهر", "type": "text", "placeholder": "", "ar":true},
+      {"key": "yeara", "label": "عام", "type": "text", "placeholder": "", "ar":true},
+      {"key": "fe", "label": "في", "type": "text", "placeholder": "", "ar":true}
+    ],
+    "table": {
+      "enabled": false
+    }
+  },
+    {
+    "id": 10,
+    "name": "Recruitment Agreement-3",
+    "background": "/rap_5.jpg",
+    "template": "/rap_5.json",
     "fields": [
       {"key": "day", "label": "Day", "type": "text", "placeholder": ""},
       {"key": "month", "label": "Month", "type": "text", "placeholder": ""},

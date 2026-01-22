@@ -1,0 +1,16 @@
+{
+  "normalFields": {
+    "comp_name": { "left": 54, "top": 55 },
+    "rec_agency": { "left": 64, "top": 64.5 },
+    "comp_name2": { "left": 134, "top": 74.5 },
+    "offic_addres": { "left": 67, "top": 79 },
+    "emp_name": { "left": 138, "top": 79 },
+    "rec_agnecy2": { "left": 109, "top": 85 },
+    "pra_rep": { "left": 80, "top": 92 },
+
+    "the_company_name": { "left": 50, "top": 116.5 },
+    "serv_agency": { "left": 51, "top": 121.5 }
+  },
+  "table": {}
+
+}
