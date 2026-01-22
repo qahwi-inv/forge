@@ -17,6 +17,13 @@ module.exports = {
       name: '@electron-forge/maker-squirrel',
       config: {},
     },
+    // macOS DMG installer (recommended)
+    {
+      name: '@electron-forge/maker-dmg',
+      config: {
+        format: 'UDZO', // compressed DMG
+      }
+    },
     {
       name: '@electron-forge/maker-zip',
       platforms: ['darwin'],
