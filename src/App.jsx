@@ -403,12 +403,10 @@ useEffect(() => {
 
   const currentForm = formsConfig.find(f => f.id === activeFormId);
 
-const previewImage = currentForm
-  ? (import.meta.env.DEV
-      ? `${currentForm.background}`
-      : `assets${currentForm.background}`
-    )
-  : '';
+const previewImage = import.meta.env.DEV
+  ? `/assets/${currentForm.background}`
+  : `asset://${currentForm.background}`;
+
     
   return (
     <div style={{ padding: '30px', fontFamily: 'Arial', direction: 'ltr', fontSize: '16px', background: '#f8f9fa' }}>

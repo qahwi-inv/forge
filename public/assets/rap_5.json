@@ -1,0 +1,10 @@
+{
+  "normalFields": {
+    "day": { "left": 160, "top": 146.5 },
+    "month": { "left": 30, "top": 152 },
+    "pres": { "left": 28, "top": 180 },
+    "gen_man": { "left": 118, "top": 180 }
+  },
+  "table": {}
+
+}

@@ -3,8 +3,18 @@ import path from 'node:path';
 import started from 'electron-squirrel-startup';
 import * as fs from 'fs';
 import { machineIdSync } from 'node-machine-id';
+import { protocol } from 'electron';
 
 const isDev = process.env.NODE_ENV === "development";
+
+app.whenReady().then(() => {
+  protocol.registerFileProtocol('asset', (request, callback) => {
+    const url = request.url.replace('asset://', '');
+    const filePath = path.join(getAssetsPath(), url);
+
+    callback({ path: filePath });
+  });
+});
 
 ipcMain.handle('get-machine-id', () => {
   return machineIdSync(); // Unique hardware hash

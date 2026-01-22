@@ -58,8 +58,29 @@
     "background": "/spa_1.jpg",
     "template": "/spa_1.json",
     "fields": [
-      {"key": "name", "label": "name", "type": "text", "placeholder": "name"},
-      {"key": "nameAr", "label": "الاسم", "type": "text", "placeholder": "الاسم", "ar":true}
+      {"key": "name", "label": "name", "type": "text", "placeholder": ""},
+      {"key": "POB", "label": "P.O Box", "type": "text", "placeholder": ""},
+      {"key": "Zip_code", "label": "Zip Code", "type": "text", "placeholder": ""},
+      {"key": "dist", "label": "District", "type": "text", "placeholder": ""},
+      {"key": "city", "label": "City", "type": "text", "placeholder": ""},
+      {"key": "capac", "label": "Capacity as", "type": "text", "placeholder": ""},
+      {"key": "const", "label": "To Constitute", "type": "text", "placeholder": ""},
+      {"key": "rep_by", "label": "Represented By", "type": "text", "placeholder": ""},
+      {"key": "G_M", "label": "General Manager of", "type": "text", "placeholder": ""},
+      {"key": "address", "label": "Office Address at", "type": "text", "placeholder": ""},
+
+
+      {"key": "addressar", "label": "العنوان", "type": "text", "placeholder": "", "ar":true},
+      {"key": "nameAr", "label": "الاسم", "type": "text", "placeholder": "", "ar":true},
+      {"key": "sifa", "label": "صفتي", "type": "text", "placeholder": "", "ar":true},
+      {"key": "lesharika", "label": "لشركة", "type": "text", "placeholder": "", "ar":true},
+      {"key": "auaen", "label": "اعين مكتب", "type": "text", "placeholder": "", "ar":true},
+      {"key": "said", "label": "يمثله السيد", "type": "text", "placeholder": "", "ar":true},
+      {"key": "sifa2", "label": "بصفته", "type": "text", "placeholder": "", "ar":true},
+      {"key": "maktab", "label": "عنوان المكتب", "type": "text", "placeholder": "", "ar":true}
+
+
+
     ],
     "table": {
       "enabled": false
@@ -71,7 +92,179 @@
     "background": "/spa_2.jpg",
     "template": "/spa_2.json",
     "fields": [
+      {"key": "sig", "label": "Signature", "type": "text", "placeholder": ""},
+      {"key": "pass", "label": "Passport/I.D. No", "type": "text", "placeholder": ""},
+      {"key": "Issued", "label": "Issued on", "type": "text", "placeholder": ""},
+      {"key": "Endore", "label": "Endoresement and Authorization", "type": "text", "placeholder": ""},
+      {"key": "wit1", "label": "Witness 1", "type": "text", "placeholder": ""},
+      {"key": "wit2", "label": "Witness 2", "type": "text", "placeholder": ""},
  
+      {"key": "siga", "label": "توقيع الموكل", "type": "text", "placeholder": "", "ar":true},
+      {"key": "passa", "label": "رقم الجواز / البطاقة", "type": "text", "placeholder": "", "ar":true},
+      {"key": "IssuedA", "label": "تاريخ الاصدار", "type": "text", "placeholder": "", "ar":true},
+      {"key": "Endorea", "label": "موثق من قبل", "type": "text", "placeholder": "", "ar":true},
+      {"key": "wit1a", "label": "شاهد اول", "type": "text", "placeholder": "", "ar":true},
+      {"key": "wit2a", "label": "شاهد ثاني", "type": "text", "placeholder": "", "ar":true}
+    ],
+    "table": {
+      "enabled": false
+    }
+  },
+    {
+    "id": 5,
+    "name": "Standard Employement Contract-1",
+    "background": "/sec_1.jpg",
+    "template": "/sec_1.json",
+    "fields": [
+      {"key": "emp", "label": "Employer", "type": "text", "placeholder": ""},
+      {"key": "add", "label": "Address", "type": "text", "placeholder": ""},
+      {"key": "tel", "label": "Tel No.", "type": "text", "placeholder": ""},
+      {"key": "Fax", "label": "Fax No.", "type": "text", "placeholder": ""},
+      {"key": "name_agency", "label": "Name of Agency", "type": "text", "placeholder": ""},
+      {"key": "addres_agency", "label": "Address of Agency", "type": "text", "placeholder": ""},
+      {"key": "tel_no", "label": "Tel No.", "type": "text", "placeholder": ""},
+      {"key": "employee", "label": "Employee", "type": "text", "placeholder": ""},
+      {"key": "civil", "label": "Civil Status", "type": "text", "placeholder": ""},
+      {"key": "Pass", "label": "Passport No.", "type": "text", "placeholder": ""},
+      {"key": "date", "label": "Date & place of Issue", "type": "text", "placeholder": ""},
+      {"key": "addre_employee", "label": "Address of Employee", "type": "text", "placeholder": ""},
+      {"key": "site", "label": "Site of Employment", "type": "text", "placeholder": ""},
+
+
+      {"key": "empa", "label": "صاحب العمل", "type": "text", "placeholder": "", "ar":true},
+      {"key": "adda", "label": "العنوان", "type": "text", "placeholder": "", "ar":true},
+      {"key": "p_o", "label": "ص.ب", "type": "text", "placeholder": "", "ar":true},
+      {"key": "tela", "label": "هاتف رقم", "type": "text", "placeholder": "", "ar":true},
+      {"key": "Faxa", "label": "فاكس رقم", "type": "text", "placeholder": "", "ar":true},
+      {"key": "name_agencya", "label": "اسم المكتب", "type": "text", "placeholder": "", "ar":true},
+      {"key": "addres_agencya", "label": "عنوان المكتب", "type": "text", "placeholder": "", "ar":true},
+      {"key": "tel_noa", "label": "هاتف المكتب", "type": "text", "placeholder": "", "ar":true},
+      {"key": "employeea", "label": "الموظف", "type": "text", "placeholder": "", "ar":true},
+      {"key": "civila", "label": "الجنسية", "type": "text", "placeholder": "", "ar":true},
+      {"key": "Passa", "label": "رقم الجواز", "type": "text", "placeholder": "", "ar":true},
+      {"key": "datea", "label": "تاريخ ومكان الاصدار", "type": "text", "placeholder": "", "ar":true},
+      {"key": "sitea", "label": "موقع العمل", "type": "text", "placeholder": "", "ar":true},
+      {"key": "emp_pos", "label": "مهنة الموظف", "type": "text", "placeholder": "", "ar":true},
+      {"key": "basic_sal", "label": "الراتب الشهري الاساسي", "type": "text", "placeholder": "", "ar":true}
+
+    ], 
+
+    "table": {
+      "enabled": false
+    }
+  },
+  {
+    "id": 6,
+    "name": "Standard Employement Contract-2",
+    "background": "/sec_2.jpg",
+    "template": "/sec_2.json",
+    "fields": [
+      {"key": "bada", "label": "بدل اعاشة", "type": "text", "placeholder": "", "ar":true}
+    ],
+    "table": {
+      "enabled": false
+    }
+  },
+  {
+    "id": 7,
+    "name": "Standard Employement Contract-3",
+    "background": "/sec_4.jpg",
+    "template": "/sec_4.json",
+    "fields": [
+      {"key": "day", "label": "Day", "type": "text", "placeholder": ""},
+      {"key": "month", "label": "Month", "type": "text", "placeholder": ""},
+      {"key": "at", "label": "At", "type": "text", "placeholder": ""},
+      
+      {"key": "daya", "label": "يوم", "type": "text", "placeholder": "", "ar":true},
+      {"key": "montha", "label": "شهر", "type": "text", "placeholder": "", "ar":true},
+      {"key": "yeara", "label": "عام", "type": "text", "placeholder": "", "ar":true},
+      {"key": "fe", "label": "في", "type": "text", "placeholder": "", "ar":true}
+    ],
+    "table": {
+      "enabled": false
+    }
+  },
+    {
+    "id": 8,
+    "name": "Recruitment Agreement-1",
+    "background": "/rap_1.jpg",
+    "template": "/rap_1.json",
+    "fields": [
+      {"key": "comp_name", "label": "Company Name", "type": "text", "placeholder": ""},
+      {"key": "rec_agency", "label": "Recruitment Agency", "type": "text", "placeholder": ""},
+      {"key": "comp_name2", "label": "Between Company Name", "type": "text", "placeholder": ""},
+      {"key": "offic_addres", "label": "Office Address", "type": "text", "placeholder": ""},
+      {"key": "emp_name", "label": "Employer Name", "type": "text", "placeholder": ""},
+      {"key": "rec_agnecy2", "label": "Again Recruitment Agency", "type": "text", "placeholder": ""},
+      {"key": "pra_rep", "label": "PRA Representitive", "type": "text", "placeholder": ""},
+      {"key": "the_company_name", "label": "The Company Name", "type": "text", "placeholder": ""},
+      {"key": "serv_agency", "label": "Services of Recruitment Agency", "type": "text", "placeholder": ""}
+
+    ],
+    "table": {
+      "enabled": false
+    }
+  },
+    {
+    "id": 9,
+    "name": "Recruitment Agreement-2",
+    "background": "/rap_2.jpg",
+    "template": "/rap_2.json",
+    "fields": [
+      {"key": "Time_fee", "label": "Time Fee", "type": "text", "placeholder": ""},
+      {"key": "agency_fee", "label": "Agency Fee", "type": "text", "placeholder": ""},
+      {"key": "insur", "label": "Insurance", "type": "text", "placeholder": ""},
+      {"key": "Procfee", "label": "Processing Fee", "type": "text", "placeholder": ""}
+
+    ],
+    "table": {
+      "enabled": false
+    }
+  },
+    {
+    "id": 10,
+    "name": "Recruitment Agreement-3",
+    "background": "/rap_5.jpg",
+    "template": "/rap_5.json",
+    "fields": [
+      {"key": "day", "label": "Day", "type": "text", "placeholder": ""},
+      {"key": "month", "label": "Month", "type": "text", "placeholder": ""},
+      {"key": "pres", "label": "President", "type": "text", "placeholder": ""},
+      {"key": "gen_man", "label": "General Manager", "type": "text", "placeholder": ""}
+
+    ],
+    "table": {
+      "enabled": false
+    }
+  },
+  {
+    "id": 11,
+    "name": "Affidavit of Undertaking",
+    "background": "/affidavit.jpg",
+    "template": "/affidavit.json",
+    "fields": [
+      {"key": "comp_name", "label": "Company Name", "type": "text", "placeholder": ""},
+      {"key": "addre", "label": "Address", "type": "text", "placeholder": ""},
+      {"key": "cit", "label": "City", "type": "text", "placeholder": ""},
+      {"key": "ownder", "label": "Owner", "type": "text", "placeholder": ""},
+      {"key": "day", "label": "Day", "type": "text", "placeholder": ""},
+      {"key": "month", "label": "Month", "type": "text", "placeholder": ""},
+      {"key": "ownderbottom", "label": "Owner Again", "type": "text", "placeholder": ""}
+
+    ],
+    "table": {
+      "enabled": false
+    }
+  },
+  {
+    "id": 12,
+    "name": "Contingency Plan",
+    "background": "/contingency.jpg",
+    "template": "/contingency.json",
+    "fields": [
+      {"key": "comp_rep", "label": "Company Representative", "type": "text", "placeholder": ""},
+      {"key": "comp_name", "label": "Company Name", "type": "text", "placeholder": ""}
+
     ],
     "table": {
       "enabled": false

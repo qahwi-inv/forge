@@ -1,37 +1,21 @@
 {
   "normalFields": {
-    "companyName": { "left": 48, "top": 115 }
+    "sig": { "left": 44, "top": 82 },
+    "pass": { "left": 56, "top": 86 },
+    "Issued": { "left": 45, "top": 90 },
+    "Endore": { "left": 76, "top": 94 },
+    "wit1": { "left": 29, "top": 110 },
+    "wit2": { "left": 77, "top": 110 },
+    "siga": { "left": 48, "top": 64 },
+    "passa": { "left": 57, "top": 69.5 },
+    "IssuedA": { "left": 50, "top": 74 },
+    "Endorea": { "left": 58, "top": 79 },
+
+
+    "wit1a": { "left": 27, "top": 94 },
+    "wit2a": { "left": 65, "top": 94 }
 
   },
-  "table": {
-    "startLeft": 25,          
-    "startTop": 130,          
-    "columnWidths": [60, 40, 50, 40, 50], 
-    "rowHeight": 20,          
-    "cells": [
-     
-      [
-        { "left": 0, "top": 0 },  
-        { "left": 45, "top": 0 },
-        { "left": 96, "top": 0 }, 
-        { "left": 123, "top": 0 },
-        { "left": 140, "top": 0 }
-      ],
-      [
-        { "left": 0, "top": 5 },  
-        { "left": 45, "top": 5 },
-        { "left": 96, "top": 5 }, 
-        { "left": 123, "top": 5 },
-        { "left": 140, "top": 5 }
-      ],
-      [
-        { "left": 0, "top": 10 },  
-        { "left": 45, "top": 10 },
-        { "left": 96, "top": 10 }, 
-        { "left": 123, "top": 10 },
-        { "left": 140, "top": 10 }
-      ]
-      
-    ]
-  }
+  "table": {}
+
 }

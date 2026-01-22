@@ -1,0 +1,11 @@
+{
+  "normalFields": {
+    "Time_fee": { "left": 149, "top": 87.5 },
+    "agency_fee": { "left": 85, "top": 92 },
+    "insur": { "left": 161, "top": 92 },
+    "Procfee": { "left": 118, "top": 97 }
+
+  },
+  "table": {}
+
+}

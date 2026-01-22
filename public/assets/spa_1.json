@@ -1,7 +1,24 @@
 {
   "normalFields": {
     "name": { "left": 37, "top": 76 },
-    "nameAr": { "left": 50, "top": 68 }
+    "POB": { "left": 35, "top": 84 },
+    "Zip_code": { "left": 66, "top": 84 },
+    "dist": { "left": 80, "top": 84 },
+    "city": { "left": 45, "top": 88 },
+    "capac": { "left": 51, "top": 96 },
+    "const": { "left": 29, "top": 104 },
+    "rep_by": { "left": 43, "top": 108.5 },
+    "G_M": { "left": 29, "top": 116.5 },
+    "address": { "left": 29, "top": 124 },
+    "addressar": { "left": 40, "top": 78 },
+    "nameAr": { "left": 50, "top": 68 },
+    "sifa": { "left": 40, "top": 83 },
+    "lesharika": { "left": 40, "top": 88 },
+    "auaen": { "left": 45, "top": 93 },
+    "said": { "left": 48, "top": 98 },
+
+    "sifa2": { "left": 28, "top": 107 },
+    "maktab": { "left": 28, "top": 117 }
 
   },
   "table": {}

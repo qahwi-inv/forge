@@ -1,0 +1,14 @@
+{
+  "normalFields": {
+    "day": { "left": 46, "top": 88 },
+    "month": { "left": 76, "top": 88 },
+    "at": { "left": 32, "top": 92 },
+
+    "daya": { "left": 62, "top": 85 },
+    "montha": { "left": 83, "top": 85 },
+    "yeara": { "left": 10, "top": 89 },
+    "fe": { "left": 36, "top": 89 }
+  },
+  "table": {}
+
+}
