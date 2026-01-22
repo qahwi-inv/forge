@@ -1,36 +1,9 @@
 {
   "normalFields": {
-    "emp": { "left": 54, "top": 74 },
-    "add": { "left": 52, "top": 78 },
-    "tel": { "left": 45.5, "top": 85 },
-    "Fax": { "left": 74, "top": 85 },
-    "name_agency": { "left": 56, "top": 95.5 },
-    "addres_agency": { "left": 48, "top": 100 },
-    "tel_no": { "left": 44, "top": 103.5 },
-    "employee": { "left": 50, "top": 114 },
-    "civil": { "left": 51, "top": 118 },
-    "Pass": { "left": 52, "top": 122 },
-    "date": { "left": 64, "top": 125.5 },
-    "addre_employee": { "left": 45, "top": 128.5 },
-    "site": { "left": 60, "top": 146.5 },
-
-    "empa": { "left": 26, "top": 74 },
-    "adda": { "left": 22, "top": 78 },
-    "p_o": { "left": 22, "top": 82 },
-    "tela": { "left": 22, "top": 85 },
-    "Faxa": { "left": 58, "top": 85 },
-    "name_agencya": { "left": 31, "top": 92 },
-    "addres_agencya": { "left": 23, "top": 96 },
-    "tel_noa": { "left": 23, "top": 100 },
-
-    "employeea": { "left": 23, "top": 114 },
-    "civila": { "left": 23, "top": 118 },
-    "Passa": { "left": 23, "top": 122 },
-    "datea": { "left": 37, "top": 125.5 },
-
-    "sitea": { "left": 30, "top": 146.5 },
-    "emp_pos": { "left": 32, "top": 160.5 },
-    "basic_sal": { "left": 40, "top": 165 }
+    "day": { "left": 160, "top": 146.5 },
+    "month": { "left": 30, "top": 152 },
+    "pres": { "left": 28, "top": 180 },
+    "gen_man": { "left": 118, "top": 180 }
   },
   "table": {}
 

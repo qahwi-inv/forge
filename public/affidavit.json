@@ -1,0 +1,13 @@
+{
+  "normalFields": {
+    "comp_name": { "left": 37, "top": 71.5 },
+    "addre": { "left": 58, "top": 76.5 },
+    "cit": { "left": 108, "top": 76.5 },
+    "ownder": { "left": 75, "top": 82 },
+    "day": { "left": 44, "top": 190 },
+    "month": { "left": 71, "top": 190 },
+    "ownderbottom": { "left": 27, "top": 214 }
+  },
+  "table": {}
+
+}

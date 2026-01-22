@@ -1,6 +1,6 @@
 [
   {
-    "id": 8,
+    "id": 12,
     "name": "Request Letter",
     "background": "/request_letter.jpg",
     "template": "/request_letter.json",
@@ -185,7 +185,7 @@
     }
   },
     {
-    "id": 1,
+    "id": 8,
     "name": "Recruitment Agreement-1",
     "background": "/rap_1.jpg",
     "template": "/rap_1.json",
@@ -211,14 +211,11 @@
     "background": "/rap_2.jpg",
     "template": "/rap_2.json",
     "fields": [
-      {"key": "day", "label": "Day", "type": "text", "placeholder": ""},
-      {"key": "month", "label": "Month", "type": "text", "placeholder": ""},
-      {"key": "at", "label": "At", "type": "text", "placeholder": ""},
-      
-      {"key": "daya", "label": "يوم", "type": "text", "placeholder": "", "ar":true},
-      {"key": "montha", "label": "شهر", "type": "text", "placeholder": "", "ar":true},
-      {"key": "yeara", "label": "عام", "type": "text", "placeholder": "", "ar":true},
-      {"key": "fe", "label": "في", "type": "text", "placeholder": "", "ar":true}
+      {"key": "Time_fee", "label": "Time Fee", "type": "text", "placeholder": ""},
+      {"key": "agency_fee", "label": "Agency Fee", "type": "text", "placeholder": ""},
+      {"key": "insur", "label": "Insurance", "type": "text", "placeholder": ""},
+      {"key": "Procfee", "label": "Processing Fee", "type": "text", "placeholder": ""}
+
     ],
     "table": {
       "enabled": false
@@ -232,12 +229,42 @@
     "fields": [
       {"key": "day", "label": "Day", "type": "text", "placeholder": ""},
       {"key": "month", "label": "Month", "type": "text", "placeholder": ""},
-      {"key": "at", "label": "At", "type": "text", "placeholder": ""},
-      
-      {"key": "daya", "label": "يوم", "type": "text", "placeholder": "", "ar":true},
-      {"key": "montha", "label": "شهر", "type": "text", "placeholder": "", "ar":true},
-      {"key": "yeara", "label": "عام", "type": "text", "placeholder": "", "ar":true},
-      {"key": "fe", "label": "في", "type": "text", "placeholder": "", "ar":true}
+      {"key": "pres", "label": "President", "type": "text", "placeholder": ""},
+      {"key": "gen_man", "label": "General Manager", "type": "text", "placeholder": ""}
+
+    ],
+    "table": {
+      "enabled": false
+    }
+  },
+  {
+    "id": 11,
+    "name": "Affidavit of Undertaking",
+    "background": "/affidavit.jpg",
+    "template": "/affidavit.json",
+    "fields": [
+      {"key": "comp_name", "label": "Company Name", "type": "text", "placeholder": ""},
+      {"key": "addre", "label": "Address", "type": "text", "placeholder": ""},
+      {"key": "cit", "label": "City", "type": "text", "placeholder": ""},
+      {"key": "ownder", "label": "Owner", "type": "text", "placeholder": ""},
+      {"key": "day", "label": "Day", "type": "text", "placeholder": ""},
+      {"key": "month", "label": "Month", "type": "text", "placeholder": ""},
+      {"key": "ownderbottom", "label": "Owner Again", "type": "text", "placeholder": ""}
+
+    ],
+    "table": {
+      "enabled": false
+    }
+  },
+  {
+    "id": 1,
+    "name": "Contingency Plan",
+    "background": "/contingency.jpg",
+    "template": "/contingency.json",
+    "fields": [
+      {"key": "comp_rep", "label": "Company Representative", "type": "text", "placeholder": ""},
+      {"key": "comp_name", "label": "Company Name", "type": "text", "placeholder": ""}
+
     ],
     "table": {
       "enabled": false
