@@ -27,4 +27,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: my-app-macos
-          path: out/make/**/*.dmg
+          path: out/make/**/*.zip
