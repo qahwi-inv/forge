@@ -21,7 +21,7 @@ jobs:
         run: npm ci
 
       - name: Build macOS
-        run: npm run make -- --platform=darwin --arch=x64 --arch=arm64
+        run: npm run make -- --platform=darwin --arch=x64
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
