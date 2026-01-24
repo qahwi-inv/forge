@@ -10,15 +10,29 @@ module.exports = {
         to: 'assets'
       }
     ],
-    osxSign: false,
-    // IMPORTANT: lower the minimum macOS version
-    osxNotarize: false,
-    appBundleId: 'com.myapp',
-    appCategoryType: 'public.app-category.utilities',
-    // This sets the minimum macOS version
-    darwin: {
-      minimumSystemVersion: '11.0.0'
+    // ↓ Add this block ↓
+  osxSign: {}, // optional, but good to have
+  osxNotarize: false, // if you don’t notarize
+  // ↓ This is the important part ↓
+  afterCopy: [
+    (buildResult, callback) => {
+      // macOS only
+      if (buildResult.platform === 'darwin') {
+        const plist = require('plist');
+        const fs = require('fs');
+        const path = require('path');
+
+        const infoPlistPath = path.join(buildResult.appOutDir, 'MyApp.app', 'Contents', 'Info.plist');
+        const infoPlist = plist.parse(fs.readFileSync(infoPlistPath, 'utf8'));
+
+        // Set minimum macOS version to 11.0 (Big Sur)
+        infoPlist.LSMinimumSystemVersion = '11.0.0';
+
+        fs.writeFileSync(infoPlistPath, plist.build(infoPlist));
+      }
+      callback();
     }
+  ]
   },
   rebuildConfig: {},
   makers: [
