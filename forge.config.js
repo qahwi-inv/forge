@@ -10,6 +10,15 @@ module.exports = {
         to: 'assets'
       }
     ],
+    osxSign: false,
+    // IMPORTANT: lower the minimum macOS version
+    osxNotarize: false,
+    appBundleId: 'com.myapp',
+    appCategoryType: 'public.app-category.utilities',
+    // This sets the minimum macOS version
+    darwin: {
+      minimumSystemVersion: '11.0.0'
+    }
   },
   rebuildConfig: {},
   makers: [
