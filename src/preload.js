@@ -10,5 +10,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
     getLicense: () => ipcRenderer.invoke('get-license'),
       readJson: (fileName) => ipcRenderer.invoke("read-json", fileName),
   getAssetPath: (fileName) => ipcRenderer.invoke("get-asset-path", fileName),
+  savePDF: (data) => ipcRenderer.invoke('save-pdf', data),
 
 });

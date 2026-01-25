@@ -133,17 +133,74 @@ ipcMain.handle("read-json", (event, fileName) => {
   return JSON.parse(data);
 });
 
+ipcMain.handle("get-asset-path", (event, relativePath) => {
+  // dev -> use project public folder
+  if (isDev) {
+    return path.join(app.getAppPath(), "public", relativePath);
+  }
+
+  // prod -> resources/assets folder
+  return path.join(process.resourcesPath, "assets", relativePath);
+});
+
 ipcMain.handle('print-portrait', async (event, { content, url }) => {
-  const printWin = new BrowserWindow({
-    show: true, // 👈 IMPORTANT for macOS
-    webPreferences: {
-      webSecurity: false, // 👈 needed for file:// images
-    },
+  const printWin = new BrowserWindow({ show: false,  webPreferences: {
+    webSecurity: false
+  } });
+
+ const assetsPath = getAssetsPath();
+
+  // image = "/request_letter.jpg"
+  const imagePath = path.join(assetsPath, url.replace(/^\/+/, ''));
+  const imageSrc = `file://${imagePath.replace(/\\/g, '/')}`;
+
+
+  const fullHtml = `
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <style>
+    @page { size: A4 portrait; margin: 0; }
+    html, body { margin: 0; padding: 0; width: 210mm; height: 297mm; overflow: hidden; }
+    .print-area { 
+      width: 210mm;
+      height: 297mm;
+      position: relative;
+      background-image: url('${imageSrc}');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  </style>
+</head>
+<body>
+  <div class="print-area">
+      ${content}
+
+</div>
+</body>
+</html>
+  `;
+
+  printWin.loadURL('data:text/html;charset=utf-8,' + encodeURIComponent(fullHtml));
+
+  printWin.webContents.on('did-finish-load', () => {
+    printWin.webContents.print({
+      silent: true,           // No dialog — prints directly to default printer
+      printBackground: true,
+      margins: { marginType: 'none' },
+      pageSize: 'A4',
+    }, () => {
+      printWin.close();
+    });
   });
+});
+
+ipcMain.handle('save-pdf', async (event, { content, url }) => {
+  const pdfWin = new BrowserWindow({ show: false, webPreferences: { webSecurity: false } });
 
   const assetsPath = getAssetsPath();
-
-  // remove leading slash
   const imagePath = path.join(assetsPath, url.replace(/^\/+/, ''));
   const imageSrc = `file://${imagePath.replace(/\\/g, '/')}`;
 
@@ -154,82 +211,60 @@ ipcMain.handle('print-portrait', async (event, { content, url }) => {
   <meta charset="utf-8">
   <style>
     @page { size: A4 portrait; margin: 0; }
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 210mm;
-      height: 297mm;
-    }
-    .print-area {
+    html, body { margin: 0; padding: 0; width: 210mm; height: 297mm; overflow: hidden; }
+    .print-area { 
       width: 210mm;
       height: 297mm;
       position: relative;
-    }
-    .bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      z-index: 0;
-    }
-    .content {
-      position: relative;
-      z-index: 1;
+      background-image: url('${imageSrc}');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
     }
   </style>
 </head>
 <body>
   <div class="print-area">
-    <img id="bg" class="bg" src="${imageSrc}" />
-    <div class="content">
-      ${content}
-    </div>
+    ${content}
   </div>
-
-  <script>
-    window.imageReady = false;
-    const img = document.getElementById('bg');
-    img.onload = () => {
-      window.imageReady = true;
-    };
-    img.onerror = () => {
-      console.error('Image failed to load');
-      window.imageReady = true;
-    };
-  </script>
 </body>
 </html>
-`;
+  `;
 
-  await printWin.loadURL(
-    'data:text/html;charset=utf-8,' + encodeURIComponent(fullHtml)
-  );
+  pdfWin.loadURL('data:text/html;charset=utf-8,' + encodeURIComponent(fullHtml));
 
-  // 🔥 WAIT FOR IMAGE TO LOAD (THIS IS THE KEY)
-  await printWin.webContents.executeJavaScript(`
-    new Promise(resolve => {
-      if (window.imageReady) resolve();
-      else {
-        const img = document.getElementById('bg');
-        img.onload = resolve;
-        img.onerror = resolve;
+  pdfWin.webContents.on('did-finish-load', async () => {
+    try {
+      await new Promise(resolve => setTimeout(resolve, 800)); // delay for render
+
+      const pdfData = await pdfWin.webContents.printToPDF({
+        printBackground: true,
+        landscape: false,
+        marginsType: 0,
+        pageSize: 'A4',
+      });
+
+      // Show save dialog
+      const savePath = dialog.showSaveDialogSync(pdfWin, {
+        title: 'حفظ النموذج كـ PDF',
+        defaultPath: `نموذج--${new Date().toISOString().slice(0,10)}.pdf`,
+        filters: [{ name: 'PDF Files', extensions: ['pdf'] }],
+        properties: ['createDirectory', 'showOverwriteConfirmation']
+      });
+
+      if (savePath) {
+        fs.writeFileSync(savePath, pdfData);
+        event.sender.send('pdf-saved', { path: savePath }); // optional feedback
+        dialog.showMessageBox(pdfWin, {
+          type: 'info',
+          message: `تم حفظ الملف في: ${savePath}`
+        });
       }
-    });
-  `);
 
-  // Small extra safety delay for macOS rendering
-  await new Promise(r => setTimeout(r, 100));
-
-  printWin.webContents.print(
-    {
-      silent: false,           // set false if you want dialog
-      printBackground: true,
-      margins: { marginType: 'none' },
-      pageSize: 'A4',
-    },
-    () => {
-      printWin.close();
+      pdfWin.close();
+    } catch (err) {
+      console.error('PDF save failed:', err);
+      pdfWin.close();
     }
-  );
+  });
 });

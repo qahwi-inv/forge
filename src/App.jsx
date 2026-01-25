@@ -128,9 +128,11 @@ const loadForm = (form) => {
   // Optional: pre-fill defaults if any
 };
 
-const handleSavePDF = () => {
-  const content = printRef.current.outerHTML;
-  window.electronAPI.saveAsPDF(content);
+const handleSavePDF = async () => {
+  const content = printRef.current.innerHTML;
+  const url = currentForm.background; // or whatever your image path is
+
+  window.electronAPI.savePDF({ content, url });
 };
 
 
@@ -665,6 +667,31 @@ const previewImage = import.meta.env.DEV
   >
     طباعة
   </button>
+<button onClick={handleSavePDF}
+style={{
+      padding: '14px 40px',
+      fontSize: '18px',
+      fontWeight: '600',
+      backgroundColor: '#10b981', // emerald green
+      color: 'white',
+      border: 'none',
+      borderRadius: '10px',
+      cursor: 'pointer',
+      boxShadow: '0 4px 12px rgba(16,185,129,0.3)',
+      transition: 'all 0.2s ease',
+      margin: '20px auto',
+      display: 'block'
+    }}
+    onMouseEnter={(e) => {
+      e.target.style.transform = 'translateY(-2px)';
+      e.target.style.boxShadow = '0 6px 20px rgba(16,185,129,0.4)';
+    }}
+    onMouseLeave={(e) => {
+      e.target.style.transform = 'translateY(0)';
+      e.target.style.boxShadow = '0 4px 12px rgba(16,185,129,0.3)';
+    }}>
+  حفظ كـ PDF
+</button>
 </div>
       </div>
     )}
