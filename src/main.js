@@ -133,27 +133,19 @@ ipcMain.handle("read-json", (event, fileName) => {
   return JSON.parse(data);
 });
 
-ipcMain.handle("get-asset-path", (event, relativePath) => {
-  // dev -> use project public folder
-  if (isDev) {
-    return path.join(app.getAppPath(), "public", relativePath);
-  }
-
-  // prod -> resources/assets folder
-  return path.join(process.resourcesPath, "assets", relativePath);
-});
-
 ipcMain.handle('print-portrait', async (event, { content, url }) => {
-  const printWin = new BrowserWindow({ show: false,  webPreferences: {
-    webSecurity: false
-  } });
+  const printWin = new BrowserWindow({
+    show: true, // 👈 IMPORTANT for macOS
+    webPreferences: {
+      webSecurity: false, // 👈 needed for file:// images
+    },
+  });
 
- const assetsPath = getAssetsPath();
+  const assetsPath = getAssetsPath();
 
-  // image = "/request_letter.jpg"
+  // remove leading slash
   const imagePath = path.join(assetsPath, url.replace(/^\/+/, ''));
   const imageSrc = `file://${imagePath.replace(/\\/g, '/')}`;
-
 
   const fullHtml = `
 <!DOCTYPE html>
@@ -162,37 +154,82 @@ ipcMain.handle('print-portrait', async (event, { content, url }) => {
   <meta charset="utf-8">
   <style>
     @page { size: A4 portrait; margin: 0; }
-    html, body { margin: 0; padding: 0; width: 210mm; height: 297mm; overflow: hidden; }
-    .print-area { 
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 210mm;
+      height: 297mm;
+    }
+    .print-area {
       width: 210mm;
       height: 297mm;
       position: relative;
-      background-image: url('${imageSrc}');
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
+    }
+    .bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      z-index: 0;
+    }
+    .content {
+      position: relative;
+      z-index: 1;
     }
   </style>
 </head>
 <body>
   <div class="print-area">
+    <img id="bg" class="bg" src="${imageSrc}" />
+    <div class="content">
       ${content}
+    </div>
+  </div>
 
-</div>
+  <script>
+    window.imageReady = false;
+    const img = document.getElementById('bg');
+    img.onload = () => {
+      window.imageReady = true;
+    };
+    img.onerror = () => {
+      console.error('Image failed to load');
+      window.imageReady = true;
+    };
+  </script>
 </body>
 </html>
-  `;
+`;
 
-  printWin.loadURL('data:text/html;charset=utf-8,' + encodeURIComponent(fullHtml));
+  await printWin.loadURL(
+    'data:text/html;charset=utf-8,' + encodeURIComponent(fullHtml)
+  );
 
-  printWin.webContents.on('did-finish-load', () => {
-    printWin.webContents.print({
-      silent: true,           // No dialog — prints directly to default printer
+  // 🔥 WAIT FOR IMAGE TO LOAD (THIS IS THE KEY)
+  await printWin.webContents.executeJavaScript(`
+    new Promise(resolve => {
+      if (window.imageReady) resolve();
+      else {
+        const img = document.getElementById('bg');
+        img.onload = resolve;
+        img.onerror = resolve;
+      }
+    });
+  `);
+
+  // Small extra safety delay for macOS rendering
+  await new Promise(r => setTimeout(r, 100));
+
+  printWin.webContents.print(
+    {
+      silent: false,           // set false if you want dialog
       printBackground: true,
       margins: { marginType: 'none' },
       pageSize: 'A4',
-    }, () => {
+    },
+    () => {
       printWin.close();
-    });
-  });
+    }
+  );
 });
